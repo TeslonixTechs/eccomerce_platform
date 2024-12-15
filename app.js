@@ -10,6 +10,7 @@ const orderRoutes = require('./src/routes/order');
 const deliveryRoutes = require('./src/routes/delivery');
 const reviewRoutes = require('./src/routes/review');
 const notificationRoutes = require('./src/routes/notification');
+const adminRoutes = require('./src/routes/admin');
 
 dotenv.config();
 
@@ -57,6 +58,7 @@ app.use('/api/orders', orderRoutes); // Order Management
 app.use('/api/delivery', deliveryRoutes); // Delivery Tracking
 app.use('/api/reviews', reviewRoutes); // Reviews and Ratings
 app.use('/api/notifications', notificationRoutes); // Notifications
+app.use('/api/admin', adminRoutes); // Admin
 
 // Default route for health checks
 app.get('/', (req, res) => {
