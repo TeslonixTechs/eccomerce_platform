@@ -12,4 +12,5 @@ logs/
 Thumbs.db
 # Ignore a specific file within a folder
 
+# Ignore environment variables file
 .env

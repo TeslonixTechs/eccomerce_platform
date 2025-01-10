@@ -49,6 +49,9 @@ sequelize
   .catch((err) => {
     console.error('Database connection failed:', err.message);
   });
+sequelize.sync({ alter: true }) // Ensures the table is created or updated
+	.then(() => console.log('Database synchronized'))
+	.catch((err) => console.error('Error synchronizing database:', err));
 
 // Routes
 app.use('/api/auth', authRoutes); // Authentication and User Management
