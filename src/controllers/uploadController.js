@@ -1,8 +1,6 @@
-const express = require("express");
 const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
-const router = express.Router();
-const uploadController = require("../controllers/uploadController");
+
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -12,6 +10,15 @@ cloudinary.config({
 const storage = multer.diskStorage({});
 const upload = multer({ storage });
 
-router.post("/upload", upload.single("image"), uploadController.uploadImage);
+const uploadImage = async (req, res) => {
+    try {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        res.status(200).json({ url: result.secure_url });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+};
 
-module.exports = router;
+module.exports = {
+    uploadImage,
+};
